@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Sneakers Store - {% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="{{ asset('assets/js/nav.js') }}"></script>
+
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+    <header>
+        <nav class="content-site">
+            <div class="nav-icon"><a href="{{ path('home') }}"><img src="{{ asset('assets/img/logo.png') }}" alt="logo-sneakers fa-lg"></a></div>
+            <div id="btn-hamburgeur" class="hamburgeur"><i class="fas fa-bars fa-2x"></i></div>
+            <div class="list-nav">
+                <ul>
+                    <li><a href="{{ path('home') }}">Home</a></li>
+                    <li><a href="{{ path('shop') }}">Shop</a></li>
+                    <li><a href="">Contact</a></li>
+                </ul>
+            </div>
+            {% if is_granted('ROLE_USER') %}
+                <div class="account-nav">
+                    <ul>
+                        <li><a href="{{ path ('user_page')}}"><i class="fas fa-user"></i></a></li>
+                        <li><a href="{{ path('app_logout') }}"><i class="fas fa-shopping-cart"></i></a></li>
+                        <li><a href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i>
+
+                            </a></li>
+                    </ul>
+                </div>
+            {% else %}
+                <div class="account-nav">
+                    <ul>
+                        <li><a href="{{ path ('app_login') }}"><i class="fas fa-user fa-lg"></i></a></li>
+                    </ul>
+                </div>
+
+            {% endif %}
+        </nav>
+    <div class="menu-mobile">
+        <div class="header-mobile content-site">
+            <div class="nav-icon-mobile">
+                <a href="{{ path('home') }}"><img src="{{ asset('assets/img/logo.png') }}" alt="logo-sneakers fa-lg"></a>
+            </div>
+            <div id="close-mobile-menu"><i class="fas fa-times fa-2x"></i></div>
+        </div>
+    </div>
+    </header>
+        {% block body %}
+        {% endblock %}
+        <footer>
+            <div>
+                <article class="content-site">
+                    <aside class="img-footer">
+                        <img src="{{ asset('assets/img/logo.png') }}" alt="logo">
+                    </aside>
+                    <aside class="links-site-footer">
+                        <ul>
+                            <li><a href="{{ path ('user_page')}}">My account</a></li>
+                            <li><a href="{{ path('app_logout') }}">Logout</a></li>
+                            <li><a href="{{ path('shop') }}">Shop</a></li>
+                            <li><a href="{{ path('shop') }}">Contact</a></li>
+                        </ul>
+                    </aside>
+                    <aside class="links-site-footer">
+                        <ul>
+                            <li><a href="">CVG</a></li>
+                            <li><a href="">Legal mention</a></li>
+                        </ul>
+                        <div class="payment">
+                            <i class="fab fa-cc-mastercard fa-lg"></i>
+                            <i class="fab fa-paypal fa-lg"></i>
+                        </div>
+                    </aside>
+                </article>
+            </div>
+            <div class="marques-footer">
+                <aside class="all-logos">
+                    <img src="{{ asset('assets/img/nike.svg') }}">
+                    <img src="{{ asset('assets/img/jordan.svg') }}">
+                    <img src="{{ asset('assets/img/converse.svg') }}">
+                    <img src="{{ asset('assets/img/adidas.svg') }}">
+                    <img style="filter: none !important;" src="{{ asset('assets/img/northface.svg') }}">
+                </aside>
+            </div>
+        </footer>
+
+    </body>
+</html>

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Shop{% endblock %}
+
+{% block body %}
+
+    <section id="shop-brand" class="brand-full-whidth">
+        <div class="back-black-brand"></div>
+        <article>
+            <h1>SHOP</h1>
+        </article>
+    </section>
+
+
+    <section class="boucle-produit content-site">
+        {% for product in products %}
+            <a class="box-produit" href="{{ path ('product_simple', {id:product.id}) }}">
+                <aside class="box-produit-content">
+                    <div class="product-title-home"><h2>{{ product.name }}</h2></div>
+                    <div class="product-img-home"><img src="{{ asset('assets/img/products/') }}{{ product.img }}"></div>
+                    <div class="product-description-home"><p>{{ product.description|length > 50 ? product.description|slice(0, 100) ~ '...' : product.description}}</p></div>
+                    {% if  product.salePrice  == 0 %}
+                    <div class="product-price-home"><h4>{{ product.price }} €</h4></div>
+                    {% else %}
+                        <div class="all-price">
+                    <div class="product-price-home price-reduc"><h4>{{ product.price }} €</h4></div>
+                    <div class="product-price-home price-new"><h4>{{ product.salePrice }} €</h4></div>
+                            {% endif %}
+                        </div>
+                    <form action><button class="btn-custom btn-black btn-add-to-cart">Add to cart</button></form>
+                </aside></a>
+        {% endfor%}
+    </section>
+
+
+
+{% endblock %}

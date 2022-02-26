@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserPageController!{% endblock %}
+
+{% block body %}
+
+
+    <section id="page-account" class="content-site">
+        <article class="title-section">
+            <h2>Account page of {{ user.firstName }} {{ user.lastName }}</h2>
+        </article>
+        <article>
+            <div class="title-classique">
+                <h3>Personnal informations</h3>
+            </div>
+            <aside class="infos-items">
+                <p><span style="color: #999999; font-weight: 400;font-style: italic">Nom Prénom : </span> <span style="font-weight: 600">{{ user.lastName}} {{ user.firstName}}</span></p>
+                <p><span style="color: #999999; font-weight: 400;font-style: italic">Email : </span> <span style="font-weight: 600">{{ user.email}}</span></p>
+            </aside>
+            <h3 class="title-classique">Your addresses</h3>
+            <aside class="all-box-address">
+                {% for address in user.address %}
+                    <div class="address-item">
+
+                        <h3>{{ address.addressName }}</h3>
+                        <p>{{ address.address }}</p>
+                        <p>{{ address.city }}</p>
+                        <p>{{ address.cp }}</p>
+                    </div>
+                {% endfor %}
+            </aside>
+
+
+            </aside>
+        </article>
+        <articles class="orders">
+            <section class="title-section">
+                <h2>Order(s)</h2>
+            </section>
+
+            {% for order in user.orders %}
+                <h3 class="title-order">Order numero : {{ order.id }}</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Product</td>
+                            <td>Product image</td>
+                            <td>Product Price</td>
+                            <td>Status</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for items in order.orderItems %}
+
+                        <tr>
+                            <td style="width: 200px">{{ items.product.name }}</td>
+                            <td><img style="width: 200px" src="{{ asset('assets/img/products/') }}{{ items.product.img }}"></td>
+                            <td>{{ items.product.price }}€</td>
+                            {% if order.status == "Paid" %}
+                                <td style="width: 200px"><span class="status paid">{{ order.status }}</span></td>
+                                {% elseif order.status == "In progress" %}
+                                    <td style="width: 200px"><span class="status progress">{{ order.status }}</span></td>
+                                {% elseif order.status == "Failed" %}
+                                    <td style="width: 200px"><span class="status failed">{{ order.status }}</span></td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <div class="total-price">
+
+                    <h3>Total order</h3>
+                    <span> {{ order.totalPrice }} €</span>
+
+                </div>
+                {% endfor %}
+    </articles>
+    </section>
+
+
+{% endblock %}

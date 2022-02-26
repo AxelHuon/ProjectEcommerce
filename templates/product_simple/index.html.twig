@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+    <article class="product-simple content-site">
+
+        <section class="left-part">
+            <aside class="product-img">
+                <img class="img-brand" src="{{ asset('assets/img/') }}{{ brand }}.svg">
+                <img src="{{ asset('assets/img/products/')}}{{ product.img }}" alt="{{ product.name }}">
+            </aside>
+        </section>
+        <section class="right-part">
+            <aside class="title-product"><h2>{{ product.name }} - <span class="cat-product">{{ category }}</span>
+                </h2>
+            </aside>
+            <aside class="description-product"><p>{{ product.description }}</p></aside>
+            {% if  product.salePrice  == 0 %}
+            <aside class="price-product"><p>{{ product.price }}€</p></aside>
+            {% else %}
+                <div class="promo-pastille">
+                    Promo
+                </div>
+                <div class="all-price">
+                <aside class="price-product price-reduc"><p>{{ product.price }}€</p></aside>
+                <aside class="price-product price-new"><p>{{ product.salePrice }}€</p></aside>
+                </div>
+            {% endif %}
+            <aside class="color-product"><p>Color of product : {{ product.color }}</p></aside>
+
+            <aside class="stock-product"><p>
+                    {% if product.stock == 0 %}
+                        <span class="out-of-stock">OUT OF STOCK</span>
+                    {% elseif product.stock <= 5  %}
+                        <span class="semi-important">Stock : {{ product.stock }}</span>
+                    </aside>
+                    <aside><button class="btn-custom btn-black btn-add-to-cart">Add to cart</aside>
+                    <aside class="shipping-details">
+                        <p class="ship">Free delivery</p>
+                        <p class="come-back">Free returns</p>
+                    </aside>
+                    {% else %}
+                    Stock : {{product.stock}}
+                    </aside>
+                        <aside><form action="#"><button class="btn-custom btn-black btn-add-to-cart">Add to cart</button></form></aside>
+                    <aside class="shipping-details">
+                        <p class="ship">Free delivery</p>
+                        <p class="come-back">Free returns</p>
+                    </aside>
+                    {% endif %}
+        </section>
+
+    </article>
+    <aside class="title-section content-site"><h2>Similar products</h2></aside>
+    <section class="boucle-produit content-site">
+        {% for product in productAll | slice(0,3) %}
+            <a class="box-produit" href="{{ path ('product_simple', {id:product.id}) }}">
+                <aside class="box-produit-content">
+                    <div class="product-title-home"><h2>{{ product.name }}</h2></div>
+                    <div class="product-img-home"><img src="{{ asset('assets/img/products/') }}{{ product.img }}"></div>
+                    <div class="product-description-home"><p>{{ product.description|length > 50 ? product.description|slice(0, 100) ~ '...' : product.description}}</p></div>
+                    <div class="product-price-home"><h4>{{ product.price }} €</h4></div>
+                    <form action="#"><button class="btn-custom btn-black btn-add-to-cart">Add to cart</button></form>
+                </aside></a>
+        {% endfor%}
+    </section>
+
+
+
+
+
+
+    </article>
+
+
+
+{% endblock %}

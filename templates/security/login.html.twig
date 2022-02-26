@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div>
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+    <div class="login-box">
+
+        <div class="form-row">
+            <h1 class="">Sing in </h1>
+        </div>
+        <div class="form-row">
+            <label for="inputEmail">Email</label>
+            <input type="email" name="email" id="" class="" required autofocus>
+        </div>
+
+        <div class="form-row">
+            <label for="inputPassword">Password</label>
+            <input type="password" name="password" id="" class="" required>
+        </div>
+
+        <div class="form-row forgot-password">
+            <a href="{{ path('app_forgot_password_request') }}">Forogot Password ?</a>
+        </div>
+
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
+        <div class="form-row-btn">
+            <button class="btn-custom btn-black"  type="submit">Sign in</button>
+            <button class="btn-custom btn-black" type="button"  onclick="window.location.href='{{ path('app_register') }}'">Register</button>
+        </div>
+    </div>
+
+</form>
+{% endblock %}
