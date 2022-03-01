@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Address;
 use App\Entity\OrderItem;
+use App\Entity\Product;
 use App\Entity\User;
 use App\Repository\AddressRepository;
 use App\Repository\OrderItemRepository;

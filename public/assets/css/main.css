@@ -58,7 +58,13 @@ ul li{
 
 ul li a{
     cursor: pointer;
+    font-weight: 600;
 }
+
+footer ul li a {
+    font-weight: 500;
+}
+
 
 /*OWN CSS*/
 /*GLOBAL*/
@@ -500,6 +506,7 @@ footer .payment{
 }
 .all-price h4:first-child{
     margin-right: 0.5em;
+    margin-left: 0.5em;
 }
 .promo-pastille{
     background: #0ea5e9;
@@ -658,7 +665,7 @@ footer .payment{
 
 .address-item h3{
     font-weight: 600;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 }
 
 .all-box-address{
@@ -765,6 +772,17 @@ table {
     padding: 1em;
     margin-top: 4em;
     margin-bottom: 4em;
+}
+
+.row-agree div{
+    display: flex !important;
+}
+
+#registration_form_agreeTerms{
+    margin: 0 !important;
+    margin-bottom: 2em !important;
+    width: min-content;
+    margin-left: 1em !important;
 }
 .login-box .form-row{
     margin-bottom: 2em;

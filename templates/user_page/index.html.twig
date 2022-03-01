@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserPageController!{% endblock %}
+{% block title %}{{ user.firstName }} {{ user.lastName }}{% endblock %}
 
 {% block body %}
 
@@ -24,8 +24,7 @@
 
                         <h3>{{ address.addressName }}</h3>
                         <p>{{ address.address }}</p>
-                        <p>{{ address.city }}</p>
-                        <p>{{ address.cp }}</p>
+                        <p>{{ address.city }}, {{ address.cp }}</p>
                     </div>
                 {% endfor %}
             </aside>
@@ -54,7 +53,7 @@
 
                         <tr>
                             <td style="width: 200px">{{ items.product.name }}</td>
-                            <td><img style="width: 200px" src="{{ asset('assets/img/products/') }}{{ items.product.img }}"></td>
+                            <td><a href="{{ path ('product_simple', {id:items.product.id}) }}"> <img style="width: 200px" src="{{ asset('assets/img/products/') }}{{ items.product.img }}"></a></td>
                             <td>{{ items.product.price }}€</td>
                             {% if order.status == "Paid" %}
                                 <td style="width: 200px"><span class="status paid">{{ order.status }}</span></td>
