@@ -480,6 +480,25 @@ footer .payment{
     margin-bottom: 6em;
 }
 
+
+.select-size{
+    display: flex;
+    flex-direction: column;
+}
+.select-size label{
+    margin-bottom: 0.5em ;
+    font-size: 15px;
+    font-weight: 600;
+
+}
+.select-size select{
+    width: 50px;
+    border: 1px solid black;
+    padding: 0.5em;
+    padding-right: 1em !important;
+    border-radius: 5px;
+
+}
 .price-reduc{
     text-decoration: line-through;
     color: lightslategrey;
@@ -564,7 +583,7 @@ footer .payment{
 }
 
 .color-product{
-    font-weight: 5O0;
+    font-weight: 500;
     font-size: 13px;
 }
 
@@ -662,6 +681,10 @@ footer .payment{
     border: 1px solid black;
     border-radius: 10px;
 }
+.address-item a {
+    width: 25% !important;
+}
+
 
 .address-item h3{
     font-weight: 600;
@@ -688,6 +711,7 @@ footer .payment{
 
 .address-item{
     margin-bottom: 3em;
+    min-height: 75px;
 }
 
 table tbody tr td{
@@ -722,7 +746,12 @@ table tbody td:first-child{
 table tbody tr td:last-child{
     border-radius: 0px 5px 5px 0px;
 }
-
+.size {
+    margin-top: 1em ;
+}
+.strong-item{
+    font-weight: 600;
+}
 table {
     margin-bottom: 2em;
 }
@@ -762,6 +791,27 @@ table {
 .progress{
     background: #E5B993;
 }
+.shipping h4{
+    font-size: 15px;
+    margin-bottom: 1em;
+    margin-top: 2em;
+    font-weight: 600;
+}
+.title-address{
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+}
+.address-item.add-item{
+    background:#ECECEC;
+    transition: 0.3s ease-in-out;
+}
+
+.address-item.add-item:hover{
+    background:#FFFFFF;
+    cursor: pointer;
+}
+
 /*Page login*/
 .login-box{
     display: flex;
@@ -903,6 +953,33 @@ table {
     margin-bottom: 1em;
 }
 
+
+/*CART*/
+.cart{
+    min-height: 400px;
+}
+.cart h2{
+    margin-top: 2em;
+}
+
+.cart table img{
+    max-width: 100px;
+}
+.product-description-cart{
+    display: flex;
+    flex-direction: column;
+}
+.product-description-cart span{
+    margin-bottom: 0.5em;
+}
+
+tfoot td{
+    padding: 1.5rem;
+}
+
+.cart i {
+    margin-left: 1.2em;
+}
 
 
 

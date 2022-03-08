@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}{{ product.name }}{% endblock %}
 
 {% block body %}
 
@@ -50,6 +50,27 @@
                         <p class="come-back">Free returns</p>
                     </aside>
                     {% endif %}
+
+            <aside class="select-size">
+                <label for="select-size">Size</label>
+
+                {% if category == "SweatShirt" %}
+                <select name="select-size">
+                    <option value="M">S</option>
+                    <option value="M">M</option>
+                    <option value="M">L</option>
+                    <option value="M">XL</option>
+                    <option value="M">XXL</option>
+                </select>
+
+                {% elseif category == "Sneakers" %}
+                    <select name="select-size">
+                    {% for i in 35..45 %}
+                        <option value="{{ i }}">{{ i }}</option>
+                        {% endfor %}
+                    </select>
+                {% endif %}
+            </aside>
         </section>
 
     </article>

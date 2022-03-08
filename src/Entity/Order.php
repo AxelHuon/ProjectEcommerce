@@ -29,6 +29,12 @@ class Order
     #[ORM\Column(type: 'string', length: 255)]
     private $status;
 
+    #[ORM\ManyToOne(targetEntity: Address::class)]
+    private $address;
+
+
+
+
     public function __construct()
     {
         $this->orderItems = new ArrayCollection();
@@ -104,6 +110,18 @@ class Order
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?Address $address): self
+    {
+        $this->address = $address;
 
         return $this;
     }

@@ -31,34 +31,4 @@ class ProductSimpleController extends  AbstractController
         ]);
     }
 
-    #[Route('/addtocard{id}', name: 'add_to_card')]
-    public function addToCard(Product $product, ProductRepository $productRepository, CategoriesRepository $categoriesRepository, EntityManagerInterface $entityManager): Response
-    {
-
-        $user = $this->getUser();
-
-        $item = new Order();
-
-        $item->setUser($user);
-        $item->setTotalPrice($product->getPrice());
-        $item->setStatus('Paid');
-        $entityManager->persist($item);
-        $entityManager->flush();
-
-        $itemOrder =  new OrderItem();
-        $itemOrder
-
-
-
-
-         return $this->render('product_simple/added.html.twig', [
-             'controller_name' => 'ProductSimpleController',
-             'product'=> $product,
-             'productAll' =>$productRepository->findAll(),
-             'category' => $product->getCategory()->getName(),
-             'brand' => $product->getBrand()->getName(),
-         ]);
-    }
-
-
 }

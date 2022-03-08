@@ -27,6 +27,9 @@
                         <p>{{ address.city }}, {{ address.cp }}</p>
                     </div>
                 {% endfor %}
+                <a class="address-item add-item" href="{{ path('user_addAddress') }}"> <div>
+                        <i class="fa-solid fa-plus fa-2x"></i>
+                </div></a>
             </aside>
 
 
@@ -39,6 +42,12 @@
 
             {% for order in user.orders %}
                 <h3 class="title-order">Order numero : {{ order.id }}</h3>
+                <div class="shipping">
+                    <h4>Shipping address</h4>
+                    <p class="title-address">{{ order.address.addressName }}</p>
+                    <p>{{ order.address.address }}</p>
+                    <p>{{ order.address.city }}{{ order.address.cp }}</p>
+                </div>
                 <table>
                     <thead>
                         <tr>
@@ -52,7 +61,7 @@
                     {% for items in order.orderItems %}
 
                         <tr>
-                            <td style="width: 200px">{{ items.product.name }}</td>
+                            <td style="width: 200px">{{ items.product.name }} <div class="size">Size : <span class="strong-item">{{ items.size }}</span></div></td>
                             <td><a href="{{ path ('product_simple', {id:items.product.id}) }}"> <img style="width: 200px" src="{{ asset('assets/img/products/') }}{{ items.product.img }}"></a></td>
                             <td>{{ items.product.price }}€</td>
                             {% if order.status == "Paid" %}
