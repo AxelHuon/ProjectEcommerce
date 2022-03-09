@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!{% endblock %}
+
+{% block body %}
+   <section class="choice-address">
+       <h1 class="title-section">Choose your delivery address
+       </h1>
+
+       {% for address in user.address %}
+           <div class="address-item">
+               <h3>{{ address.addressName }}</h3>
+               <p>{{ address.address }}</p>
+               <p>{{ address.city }}, {{ address.cp }}</p>
+               <a class="select-button btn-custom btn-black" href="{{ path('address_checkout', {idAddress:address.id} ) }}">Choose for delivery</a>
+           </div>
+       {% endfor %}
+   </section>
+
+{% endblock %}

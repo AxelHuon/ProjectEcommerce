@@ -9,6 +9,7 @@ use App\Entity\User;
 use App\Form\AddAddressType;
 use App\Repository\AddressRepository;
 use App\Repository\OrderItemRepository;
+use App\Repository\OrderRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserPageController extends AbstractController
 {
-    #[Route('/my-account/', name: 'user_page')]
+    #[Route('/my-account', name: 'user_page')]
     public function index(OrderItemRepository $orderItemRepository): Response
     {
         return $this->render('user_page/index.html.twig', [
@@ -44,6 +45,20 @@ class UserPageController extends AbstractController
             'user' =>$this->getUser(),
             'form' => $form,
         ]);
+
+    }
+    #[Route('/my-account/removeAddress{id}', name: 'remove_address')]
+    public function removeAdd($id, EntityManagerInterface $entityManager, AddressRepository $addressRepository, OrderRepository $orderRepository){
+
+        $address =  $addressRepository->find($id);
+        $orders = $orderRepository->find($address);
+
+         $entityManager->remove($address, $orders);
+         $entityManager->flush();
+         return $this->redirectToRoute('user_page');
+
+
+
 
     }
 

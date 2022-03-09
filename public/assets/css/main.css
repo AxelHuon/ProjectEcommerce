@@ -586,6 +586,10 @@ footer .payment{
     font-weight: 500;
     font-size: 13px;
 }
+.trash-button{
+    width: min-content !important;
+    margin-top: 1em;
+}
 
 .shipping-details{
     border: 2px solid #F5F5F5;
@@ -681,9 +685,7 @@ footer .payment{
     border: 1px solid black;
     border-radius: 10px;
 }
-.address-item a {
-    width: 25% !important;
-}
+
 
 
 .address-item h3{
@@ -805,6 +807,7 @@ table {
 .address-item.add-item{
     background:#ECECEC;
     transition: 0.3s ease-in-out;
+    width: 25%;
 }
 
 .address-item.add-item:hover{
@@ -981,8 +984,22 @@ tfoot td{
     margin-left: 1.2em;
 }
 
+/*CHECKOUT*/
+.choice-address{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 40vh;
+}
 
-
+.choice-address .select-button{
+    margin-top: 1em;
+}
+.choice-address .title-section{
+    margin-top: 2em;
+    margin-bottom: 3em;
+}
 
 /*RESPONSIVE*/
 /*GLOBAL*/

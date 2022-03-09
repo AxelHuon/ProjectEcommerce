@@ -21,10 +21,10 @@
             <aside class="all-box-address">
                 {% for address in user.address %}
                     <div class="address-item">
-
                         <h3>{{ address.addressName }}</h3>
                         <p>{{ address.address }}</p>
                         <p>{{ address.city }}, {{ address.cp }}</p>
+                        <a class="trash-button" href="{{ path('remove_address', {id:address.id} ) }}"><i class="fa-solid fa-trash"></i></a>
                     </div>
                 {% endfor %}
                 <a class="address-item add-item" href="{{ path('user_addAddress') }}"> <div>
@@ -61,7 +61,7 @@
                     {% for items in order.orderItems %}
 
                         <tr>
-                            <td style="width: 200px">{{ items.product.name }} <div class="size">Size : <span class="strong-item">{{ items.size }}</span></div></td>
+                            <td style="width: 200px">{{ items.product.name }}</td>
                             <td><a href="{{ path ('product_simple', {id:items.product.id}) }}"> <img style="width: 200px" src="{{ asset('assets/img/products/') }}{{ items.product.img }}"></a></td>
                             <td>{{ items.product.price }}€</td>
                             {% if order.status == "Paid" %}

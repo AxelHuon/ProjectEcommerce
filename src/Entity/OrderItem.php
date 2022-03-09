@@ -21,8 +21,6 @@ class OrderItem
     #[ORM\JoinColumn(nullable: false)]
     private $product;
 
-    #[ORM\Column(type: 'string', length: 10)]
-    private $size;
 
     public function getId(): ?int
     {
@@ -53,15 +51,6 @@ class OrderItem
         return $this;
     }
 
-    public function getSize(): ?string
-    {
-        return $this->size;
-    }
 
-    public function setSize(string $size): self
-    {
-        $this->size = $size;
 
-        return $this;
-    }
 }

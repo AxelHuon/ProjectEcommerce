@@ -6,6 +6,7 @@ use App\Repository\OrderRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use mysql_xdevapi\CollectionRemove;
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: '`order`')]
@@ -29,7 +30,8 @@ class Order
     #[ORM\Column(type: 'string', length: 255)]
     private $status;
 
-    #[ORM\ManyToOne(targetEntity: Address::class)]
+    #[ORM\ManyToOne(targetEntity: Address::class )]
+    #[ORM\JoinColumn(onDelete:"CASCADE")]
     private $address;
 
 
