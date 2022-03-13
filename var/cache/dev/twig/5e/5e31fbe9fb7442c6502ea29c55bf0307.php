@@ -65,7 +65,7 @@ class __TwigTemplate_07b97bb5b04dbbcbb38df6f9a8135fac extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        echo "Hello CartController!";
+        echo "Cart";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -85,15 +85,85 @@ class __TwigTemplate_07b97bb5b04dbbcbb38df6f9a8135fac extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        echo "   <section class=\"choice-address content-site\">
-       <h1 class=\"title-section\">Choose your delivery address</h1>
-        <div class=\"all-address\">
+        echo "    <section class=\"cart content-site\">
+        <h2 class=\"title-reset\">Payement</h2>
+        ";
+        // line 8
+        if ((twig_length_filter($this->env, (isset($context["items"]) || array_key_exists("items", $context) ? $context["items"] : (function () { throw new RuntimeError('Variable "items" does not exist.', 8, $this->source); })())) > 0)) {
+            // line 9
+            echo "            <table>
+                <thead>
+                <tr>
+                    <td>Product(s)</td>
+                    <td>Prix</td>
+                    <td>Quanity</td>
+                    <td>Total</td>
+                    <td>Delete</td>
+                </tr>
+                </thead>
+                <tbody>
+                ";
+            // line 20
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["items"]) || array_key_exists("items", $context) ? $context["items"] : (function () { throw new RuntimeError('Variable "items" does not exist.', 20, $this->source); })()));
+            foreach ($context['_seq'] as $context["_key"] => $context["item"]) {
+                // line 21
+                echo "                    <tr>
+                        <td class=\"product-description-cart\"><span>";
+                // line 22
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["item"], "product", [], "any", false, false, false, 22), "name", [], "any", false, false, false, 22), "html", null, true);
+                echo "</span><img src=\"";
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("assets/img/products/"), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["item"], "product", [], "any", false, false, false, 22), "img", [], "any", false, false, false, 22), "html", null, true);
+                echo "\"></td>
+                        <td>";
+                // line 23
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["item"], "product", [], "any", false, false, false, 23), "price", [], "any", false, false, false, 23), "html", null, true);
+                echo "</td>
+                        <td>";
+                // line 24
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["item"], "quantity", [], "any", false, false, false, 24), "html", null, true);
+                echo "</td>
+                        <td>";
+                // line 25
+                echo twig_escape_filter($this->env, (twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["item"], "product", [], "any", false, false, false, 25), "price", [], "any", false, false, false, 25) * twig_get_attribute($this->env, $this->source, $context["item"], "quantity", [], "any", false, false, false, 25)), "html", null, true);
+                echo "</td>
+                        <td><a href=\"";
+                // line 26
+                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("cart_remove", ["id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["item"], "product", [], "any", false, false, false, 26), "id", [], "any", false, false, false, 26)]), "html", null, true);
+                echo "\"><i class=\"fa-solid fa-trash-can\"></i></a></td>
+                    </tr>
+                ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['item'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 29
+            echo "                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan=\"4\"><strong class=\"strong-item\">Total : </strong></td>
+                    <td><strong class=\"strong-item\">";
+            // line 33
+            echo twig_escape_filter($this->env, (isset($context["total"]) || array_key_exists("total", $context) ? $context["total"] : (function () { throw new RuntimeError('Variable "total" does not exist.', 33, $this->source); })()), "html", null, true);
+            echo " €</strong></td>
+                </tr>
+                </tfoot>
+            </table>
             <a href=\"";
-        // line 9
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("checkout_final");
-        echo "\">Pay</a>
-       </div>
-   </section>
+            // line 37
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("checkout_final");
+            echo "\" class=\"btn-custom btn-black btn-paid\">Proceed To Payment
+            </a>
+        ";
+        } else {
+            // line 40
+            echo "
+        ";
+        }
+        // line 42
+        echo "
+    </section>
 
 ";
         
@@ -116,22 +186,54 @@ class __TwigTemplate_07b97bb5b04dbbcbb38df6f9a8135fac extends Template
 
     public function getDebugInfo()
     {
-        return array (  93 => 9,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  165 => 42,  161 => 40,  155 => 37,  148 => 33,  142 => 29,  133 => 26,  129 => 25,  125 => 24,  121 => 23,  114 => 22,  111 => 21,  107 => 20,  94 => 9,  92 => 8,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% extends 'base.html.twig' %}
 
-{% block title %}Hello CartController!{% endblock %}
+{% block title %}Cart{% endblock %}
 
 {% block body %}
-   <section class=\"choice-address content-site\">
-       <h1 class=\"title-section\">Choose your delivery address</h1>
-        <div class=\"all-address\">
-            <a href=\"{{ path('checkout_final') }}\">Pay</a>
-       </div>
-   </section>
+    <section class=\"cart content-site\">
+        <h2 class=\"title-reset\">Payement</h2>
+        {% if items | length > 0 %}
+            <table>
+                <thead>
+                <tr>
+                    <td>Product(s)</td>
+                    <td>Prix</td>
+                    <td>Quanity</td>
+                    <td>Total</td>
+                    <td>Delete</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td class=\"product-description-cart\"><span>{{ item.product.name }}</span><img src=\"{{ asset('assets/img/products/')}}{{ item.product.img }}\"></td>
+                        <td>{{ item.product.price }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.product.price * item.quantity }}</td>
+                        <td><a href=\"{{ path('cart_remove', {'id': item.product.id}) }}\"><i class=\"fa-solid fa-trash-can\"></i></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan=\"4\"><strong class=\"strong-item\">Total : </strong></td>
+                    <td><strong class=\"strong-item\">{{ total }} €</strong></td>
+                </tr>
+                </tfoot>
+            </table>
+            <a href=\"{{ path ('checkout_final')}}\" class=\"btn-custom btn-black btn-paid\">Proceed To Payment
+            </a>
+        {% else %}
+
+        {% endif %}
+
+    </section>
 
 {% endblock %}
 ", "checkout/payement.html.twig", "/Users/axelhuon/Documents/Projet/ProjectEcommerce/templates/checkout/payement.html.twig");

@@ -441,8 +441,23 @@ footer .payment{
     margin-left: 1em;
 }
 
+.btn-paid::after{
+    font-family: "Font Awesome 5 Free";
+    content: "\f023";
+    display: inline-block;
+    padding-right: 3px;
+    vertical-align: middle;
+    font-weight: 900;
+    margin-left: 1em;
+}
 
 
+
+.confirm{
+    margin-top: 4em;
+    min-height: 30vh;
+
+}
 
 
 

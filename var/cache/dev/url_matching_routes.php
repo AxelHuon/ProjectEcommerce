@@ -20,6 +20,7 @@ return [
         '/checkout/final' => [[['_route' => 'checkout_final', '_controller' => 'App\\Controller\\CheckoutController::chekoutFinal'], null, null, null, false, false, null]],
         '/checkout/removeAllCart' => [[['_route' => 'remove_Allcart', '_controller' => 'App\\Controller\\CheckoutController::removeAllCart'], null, null, null, false, false, null]],
         '/checkout/addAddress' => [[['_route' => 'checkout_addNewAddress', '_controller' => 'App\\Controller\\CheckoutController::addAdress'], null, null, null, false, false, null]],
+        '/checkout/confirm' => [[['_route' => 'checkout_confirm', '_controller' => 'App\\Controller\\CheckoutController::confirmOrder'], null, null, null, false, false, null]],
         '/contact' => [[['_route' => 'contact', '_controller' => 'App\\Controller\\ContactController::index'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'home', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null]],
         '/email' => [[['_route' => 'email', '_controller' => 'App\\Controller\\HomeController::testEmail'], null, null, null, false, false, null]],

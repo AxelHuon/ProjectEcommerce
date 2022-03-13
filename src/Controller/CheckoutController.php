@@ -68,13 +68,31 @@ class CheckoutController extends AbstractController
 
     #[Route('/checkout/payement', name: 'checkout_payement')]
     public function payement(Session $session, ProductRepository $productRepository, EntityManagerInterface $entityManager){
+        $cart = $session->get('cart', []);
 
+        $panierWithData = [];
+
+        foreach($cart as $id => $quantity){
+            $panierWithData[] = [
+                'product' => $productRepository->find($id) ,
+                'quantity' => $quantity
+            ];
+        }
+
+        $total = 0;
+
+        foreach ($panierWithData as $item){
+            $totalItem = $item['product']->getPrice() * $item['quantity'];
+            $total += $totalItem;
+        }
 
 
         if ($this->getUser()) {
 
             return $this->render('checkout/payement.html.twig', [
-                'user' => $this->getUser()
+                'user' => $this->getUser(),
+                'total' => $total,
+                'items' => $panierWithData,
             ]);
         }else{
             return $this->redirectToRoute('app_login');
@@ -139,7 +157,7 @@ class CheckoutController extends AbstractController
         $cart = $session->set('cart', []);
         $address = $session->set('address', 0);
 
-        return $this->redirectToRoute('user_page');
+        return $this->redirectToRoute('checkout_confirm');
     }
 
 
@@ -170,6 +188,15 @@ class CheckoutController extends AbstractController
         }
 
     }
+    #[Route('/checkout/confirm', name: 'checkout_confirm')]
+    public function confirmOrder(Session $session, ProductRepository $productRepository, EntityManagerInterface $entityManager, AddressRepository $addressRepository)
+    {
+        return $this->renderForm('/checkout/confirm.html.twig', [
+            'user' => $this->getUser(),
+        ]);
+    }
 
 
-}
+
+
+    }

@@ -6406,7 +6406,7 @@
         <argument key="orderItemRepository" type="service_closure" id="App\Repository\OrderItemRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.NCmyezL" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.TivJdgT" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\AddressCrudController::autocomplete" type="service_closure" id=".service_locator.kEvhmk9"/>
@@ -6561,6 +6561,7 @@
         <argument key="App\Controller\CheckoutController::addAdress" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\CheckoutController::chekoutFinal" type="service_closure" id=".service_locator.Sg9BUSe"/>
         <argument key="App\Controller\CheckoutController::chooseAddress" type="service_closure" id=".service_locator.ZSQY2CZ"/>
+        <argument key="App\Controller\CheckoutController::confirmOrder" type="service_closure" id=".service_locator.Sg9BUSe"/>
         <argument key="App\Controller\CheckoutController::index" type="service_closure" id=".service_locator.ZSQY2CZ"/>
         <argument key="App\Controller\CheckoutController::payement" type="service_closure" id=".service_locator.ZSQY2CZ"/>
         <argument key="App\Controller\CheckoutController::removeAllCart" type="service_closure" id=".service_locator.Sg9BUSe"/>
@@ -6733,6 +6734,7 @@
         <argument key="App\Controller\CheckoutController:addAdress" type="service_closure" id=".service_locator.aKM6MDa"/>
         <argument key="App\Controller\CheckoutController:chekoutFinal" type="service_closure" id=".service_locator.Sg9BUSe"/>
         <argument key="App\Controller\CheckoutController:chooseAddress" type="service_closure" id=".service_locator.ZSQY2CZ"/>
+        <argument key="App\Controller\CheckoutController:confirmOrder" type="service_closure" id=".service_locator.Sg9BUSe"/>
         <argument key="App\Controller\CheckoutController:index" type="service_closure" id=".service_locator.ZSQY2CZ"/>
         <argument key="App\Controller\CheckoutController:payement" type="service_closure" id=".service_locator.ZSQY2CZ"/>
         <argument key="App\Controller\CheckoutController:removeAllCart" type="service_closure" id=".service_locator.Sg9BUSe"/>
@@ -7414,12 +7416,12 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.NCmyezL"/>
+      <argument type="service" id=".service_locator.TivJdgT"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.NCmyezL"/>
+      <argument type="service" id=".service_locator.TivJdgT"/>
     </service>
     <service id=".doctrine.orm.default_metadata_driver.inner" class="Doctrine\Persistence\Mapping\Driver\MappingDriverChain">
       <call method="addDriver">
@@ -8266,7 +8268,7 @@
     <service id="SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface" alias="symfonycasts.reset_password.helper"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.NCmyezL"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.TivJdgT"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -8291,7 +8293,7 @@
     <service id=".service_locator.4hogL1x" alias=".service_locator.N_Zcg_f"/>
     <service id=".service_locator.riGN6sa" alias=".service_locator.YU8H6ve"/>
     <service id=".service_locator.unFS_GA" alias=".service_locator.GV3GCAn"/>
-    <service id=".service_locator.tW.1urY" alias=".service_locator.NCmyezL"/>
+    <service id=".service_locator.o6n94IR" alias=".service_locator.TivJdgT"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.EnXXUfB" alias=".service_locator.PXpyotk"/>
     <service id=".service_locator.qBCHs1a" alias=".service_locator.QXcJQkF"/>

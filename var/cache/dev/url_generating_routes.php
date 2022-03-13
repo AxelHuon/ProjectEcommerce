@@ -25,6 +25,7 @@ return [
     'checkout_final' => [[], ['_controller' => 'App\\Controller\\CheckoutController::chekoutFinal'], [], [['text', '/checkout/final']], [], [], []],
     'remove_Allcart' => [[], ['_controller' => 'App\\Controller\\CheckoutController::removeAllCart'], [], [['text', '/checkout/removeAllCart']], [], [], []],
     'checkout_addNewAddress' => [[], ['_controller' => 'App\\Controller\\CheckoutController::addAdress'], [], [['text', '/checkout/addAddress']], [], [], []],
+    'checkout_confirm' => [[], ['_controller' => 'App\\Controller\\CheckoutController::confirmOrder'], [], [['text', '/checkout/confirm']], [], [], []],
     'contact' => [[], ['_controller' => 'App\\Controller\\ContactController::index'], [], [['text', '/contact']], [], [], []],
     'home' => [[], ['_controller' => 'App\\Controller\\HomeController::index'], [], [['text', '/']], [], [], []],
     'email' => [[], ['_controller' => 'App\\Controller\\HomeController::testEmail'], [], [['text', '/email']], [], [], []],
