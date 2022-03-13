@@ -72,9 +72,6 @@ class CartController extends AbstractController
 
     }
 
-    #[Route('/cart/chekout', name: 'chekout')]
-    public function checkout($id, SessionInterface $session){
 
-    }
 
 }

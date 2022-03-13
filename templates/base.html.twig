@@ -8,6 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="{{ asset('assets/js/nav.js') }}"></script>
+        <link rel="icon" type="image/png" href="{{ asset('assets/img/logo.png') }}" />
+
 
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
@@ -46,6 +48,7 @@
                 <div class="account-nav">
                     <ul>
                         <li><a href="{{ path ('app_login') }}"><i class="fas fa-user fa-lg"></i></a></li>
+                        <li><a href="{{ path('cart') }}"><i class="fas fa-shopping-cart"></i></a></li>
                     </ul>
                 </div>
 

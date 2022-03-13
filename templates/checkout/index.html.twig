@@ -3,18 +3,18 @@
 {% block title %}Hello CartController!{% endblock %}
 
 {% block body %}
-   <section class="choice-address">
-       <h1 class="title-section">Choose your delivery address
-       </h1>
-
+   <section class="choice-address content-site">
+       <h1 class="title-section">Choose your delivery address</h1>
+        <div class="all-address">
        {% for address in user.address %}
            <div class="address-item">
                <h3>{{ address.addressName }}</h3>
                <p>{{ address.address }}</p>
                <p>{{ address.city }}, {{ address.cp }}</p>
-               <a class="select-button btn-custom btn-black" href="{{ path('address_checkout', {idAddress:address.id} ) }}">Choose for delivery</a>
+               <a class="select-button btn-custom btn-black" href="{{ path('checkout_addAdress', {idAddress:address.id} ) }}">Choose for delivery</a>
            </div>
        {% endfor %}
+       </div>
    </section>
 
 {% endblock %}

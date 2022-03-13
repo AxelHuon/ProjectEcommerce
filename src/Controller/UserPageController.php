@@ -22,43 +22,43 @@ class UserPageController extends AbstractController
     #[Route('/my-account', name: 'user_page')]
     public function index(OrderItemRepository $orderItemRepository): Response
     {
-        return $this->render('user_page/index.html.twig', [
-            'user' =>$this->getUser(),
-        ]);
+        if ($this->getUser()) {
+
+
+            return $this->render('user_page/index.html.twig', [
+                'user' => $this->getUser(),
+            ]);
+        }else{
+            return $this->redirectToRoute('app_login');
+        }
+
+
 
     }
     #[Route('/my-account/addAddress', name: 'user_addAddress')]
     public function addAdress(Request $request, EntityManagerInterface $entityManager): Response{
 
-        $address = new Address();
 
-        $form = $this->createForm(AddAddressType::class, $address);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $address->setUser($this->getUser());
-            $entityManager->persist($address);
-            $entityManager->flush();
-            return $this->redirectToRoute('user_page');
+        if ($this->getUser()) {
+
+            $address = new Address();
+
+            $form = $this->createForm(AddAddressType::class, $address);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $address->setUser($this->getUser());
+                $entityManager->persist($address);
+                $entityManager->flush();
+                return $this->redirectToRoute('user_page');
+            }
+
+            return $this->renderForm('user_page/addAddress.html.twig', [
+                'user' => $this->getUser(),
+                'form' => $form,
+            ]);
+        }else{
+            return $this->redirectToRoute('app_login');
         }
-
-        return $this->renderForm('user_page/addAddress.html.twig', [
-            'user' =>$this->getUser(),
-            'form' => $form,
-        ]);
-
-    }
-    #[Route('/my-account/removeAddress{id}', name: 'remove_address')]
-    public function removeAdd($id, EntityManagerInterface $entityManager, AddressRepository $addressRepository, OrderRepository $orderRepository){
-
-        $address =  $addressRepository->find($id);
-        $orders = $orderRepository->find($address);
-
-         $entityManager->remove($address, $orders);
-         $entityManager->flush();
-         return $this->redirectToRoute('user_page');
-
-
-
 
     }
 

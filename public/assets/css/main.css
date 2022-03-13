@@ -147,8 +147,11 @@ body, html{
     top: 150%;
 }
 
-
-
+/*ADMIN PAGE */
+.logo-custom{
+    display: flex !important;
+    flex-direction: column !important;
+}
 
 
 /*HEADER*/
@@ -379,9 +382,7 @@ footer .payment{
     }
 }
 
-.box-produit{
-    margin-bottom: 3em;
-}
+
 
 
 .box-produit-content{
@@ -395,6 +396,7 @@ footer .payment{
     border-radius: 13px;
     -webkit-box-shadow: 0px 0px 16px 4px rgba(0,0,0,0.05);
     box-shadow: 0px 0px 16px 4px rgba(0,0,0,0.05);
+    margin-bottom: 3em;
 }
 
 .box-produit-content .product-title-home h2{
@@ -413,7 +415,10 @@ footer .payment{
 .box-produit-content .product-price-home{
     font-size: 20px;
     font-weight: 600;
+    display: flex;
+    justify-content: center;
 }
+
 
 .btn-add-to-cart::after{
     font-family: "Font Awesome 5 Free";
@@ -697,6 +702,8 @@ footer .payment{
     display: flex;
     align-items: flex-start;
     margin-top: 2em;
+    flex-wrap: wrap;
+    margin-bottom: 2em;
 }
 
 .all-box-address div{
@@ -712,7 +719,7 @@ footer .payment{
 }
 
 .address-item{
-    margin-bottom: 3em;
+    margin-bottom: 1.5em;
     min-height: 75px;
 }
 
@@ -1000,6 +1007,19 @@ tfoot td{
     margin-top: 2em;
     margin-bottom: 3em;
 }
+
+.all-address{
+    display: flex;
+    align-content: flex-start;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.all-address .address-item{
+    margin-left: 1em;
+}
+
+
+
 
 /*RESPONSIVE*/
 /*GLOBAL*/

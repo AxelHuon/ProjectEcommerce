@@ -40,8 +40,6 @@ class Product
     #[ORM\ManyToOne(targetEntity: Brand::class, inversedBy: 'products')]
     private $brand;
 
-    #[ORM\Column(type: 'float')]
-    private $sale_price;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: OrderItem::class)]
     private $orderProduct;
@@ -162,17 +160,6 @@ class Product
         return $this;
     }
 
-    public function getSalePrice(): ?float
-    {
-        return $this->sale_price;
-    }
-
-    public function setSalePrice(float $sale_price): self
-    {
-        $this->sale_price = $sale_price;
-
-        return $this;
-    }
 
     /**
      * @return Collection|OrderItem[]
@@ -204,7 +191,10 @@ class Product
         return $this;
     }
 
-
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 
 
 }

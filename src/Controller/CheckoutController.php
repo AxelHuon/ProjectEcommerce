@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Address;
 use App\Entity\Order;
 use App\Entity\OrderItem;
 use App\Entity\Product;
@@ -18,115 +19,125 @@ class CheckoutController extends AbstractController
     #[Route('/checkout/address', name: 'checkout')]
     public function index(Session $session, ProductRepository $productRepository, EntityManagerInterface $entityManager): Response
     {
-        $cart = $session->get('cart', []);
 
-        $panierWithData = [];
+        if ($this->getUser()) {
 
-        foreach($cart as $id => $quantity){
-            $panierWithData[] = [
-                'product' => $productRepository->find($id) ,
-                'quantity' => $quantity
-            ];
+            $cart = $session->get('cart', []);
+
+            $panierWithData = [];
+
+            foreach ($cart as $id => $quantity) {
+                $panierWithData[] = [
+                    'product' => $productRepository->find($id),
+                    'quantity' => $quantity
+                ];
+            }
+            $total = 0;
+
+
+            foreach ($panierWithData as $item) {
+                $totalItem = $item['product']->getPrice() * $item['quantity'];
+                $total += $totalItem;
+            }
+
+            return $this->render('checkout/index.html.twig', [
+                'items' => $panierWithData,
+                'total' => $total,
+                'user' => $this->getUser()
+            ]);
+        }else{
+            return $this->redirectToRoute('app_login');
         }
-        $total = 0;
-
-
-        foreach ($panierWithData as $item){
-            $totalItem = $item['product']->getPrice() * $item['quantity'];
-            $total += $totalItem;
-        }
-
-
-
-
-        return $this->render('checkout/index.html.twig', [
-            'items' => $panierWithData,
-            'total' => $total,
-            'user' => $this->getUser()
-        ]);
     }
 
 
 
-    #[Route('/checkout/address{idAddress}', name: 'address_checkout')]
-    public function addressCheckout($idAddress,Session $session,AddressRepository $addressRepository, ProductRepository $productRepository, EntityManagerInterface $entityManager){
-        $cart = $session->get('cart', []);
+    #[Route('/checkout/addAddress{idAddress}', name: 'checkout_addAdress')]
+    public function chooseAddress($idAddress, Session $session, ProductRepository $productRepository, EntityManagerInterface $entityManager){
 
-        $panierWithData = [];
-
-        foreach($cart as $id => $quantity){
-            $panierWithData[] = [
-                'product' => $productRepository->find($id) ,
-                'quantity' => $quantity
-            ];
+        if ($this->getUser()) {
+            $address = $session->set('address', $idAddress);
+            return $this->redirectToRoute('checkout_payement');
+        }else{
+            return $this->redirectToRoute('app_login');
         }
-        $total = 0;
+    }
 
-        $address = $addressRepository->find($idAddress);
 
-        foreach ($panierWithData as $item){
-            $totalItem = $item['product']->getPrice() * $item['quantity'];
-            $total += $totalItem;
+    #[Route('/checkout/payement', name: 'checkout_payement')]
+    public function payement(Session $session, ProductRepository $productRepository, EntityManagerInterface $entityManager){
+
+
+
+        if ($this->getUser()) {
+
+            return $this->render('checkout/payement.html.twig', [
+                'user' => $this->getUser()
+            ]);
+        }else{
+            return $this->redirectToRoute('app_login');
         }
-
-        return $this->render('checkout/address.html.twig', [
-            'items' => $panierWithData,
-            'total' => $total,
-            'user' => $this->getUser()
-        ]);
 
     }
 
-    #[Route('/checkout/address{idAddress}/final', name: 'final_checkout')]
-    public function finalCheckout($idAddress,Session $session,AddressRepository $addressRepository, ProductRepository $productRepository, EntityManagerInterface $entityManager){
-        $cart = $session->get('cart', []);
+    #[Route('/checkout/final', name: 'checkout_final')]
+    public function chekoutFinal(Session $session, ProductRepository $productRepository, EntityManagerInterface $entityManager, AddressRepository $addressRepository){
 
-        $panierWithData = [];
+        if ($this->getUser()) {
 
-        foreach($cart as $id => $quantity){
-            $panierWithData[] = [
-                'product' => $productRepository->find($id) ,
-                'quantity' => $quantity
-            ];
-        }
-        $total = 0;
+            $addressID = $session->get('address');
+            $cart = $session->get('cart', []);
 
-        $address = $addressRepository->find($idAddress);
+            $panierWithData = [];
 
-
-        foreach ($panierWithData as $item){
-            $totalItem = $item['product']->getPrice() * $item['quantity'];
-            $total += $totalItem;
-        }
+            foreach ($cart as $id => $quantity) {
+                $panierWithData[] = [
+                    'product' => $productRepository->find($id),
+                    'quantity' => $quantity
+                ];
+            }
+            $total = 0;
 
 
-        $order = new Order();
-        $order->setUser($this->getUser());
-        $order->setStatus("Paid");
-        $order->setTotalPrice($total);
-        $order->setAddress($address);
-        $entityManager->persist($order);
-        $entityManager->flush();
+            foreach ($panierWithData as $item) {
+                $totalItem = $item['product']->getPrice() * $item['quantity'];
+                $total += $totalItem;
+            }
 
-        foreach ($panierWithData as $item ){
-            $orderItem = new OrderItem();
-            $orderItem->setProduct($item['product']);
-            $orderItem->setOrderList($order);
-            $entityManager->persist($orderItem);
+            $order = new Order();
+            $order->setAddress($addressRepository->find($addressID));
+            $order->setStatus('Paid');
+            $order->setUser($this->getUser());
+            $order->setTotalPrice($total);
+            $entityManager->persist($order);
             $entityManager->flush();
+
+            foreach ($panierWithData as $item) {
+                $orderItem = new OrderItem();
+                $orderItem->setProduct($item['product']);
+                $orderItem->setOrderList($order);
+                $entityManager->persist($orderItem);
+                $entityManager->flush();
+            }
+
+            return $this->redirectToRoute('remove_Allcart');
+        }else{
+            return $this->redirectToRoute('app_login');
         }
-
-        $cart = $session->get('cart', []);
-        $total = 0;
-        $panierWithData = [];
-
-
-        return $this->render('checkout/final.html.twig', [
-            'items' => $panierWithData,
-            'total' => $total,
-            'user' => $this->getUser()
-        ]);
     }
+
+    #[Route('/checkout/removeAllCart', name: 'remove_Allcart')]
+    public function removeAllCart(Session $session, ProductRepository $productRepository, EntityManagerInterface $entityManager, AddressRepository $addressRepository)
+    {
+
+        $total = 0;
+        $cart = $session->set('cart', []);
+        $address = $session->set('address', 0);
+
+        return $this->redirectToRoute('user_page');
+    }
+
+
 
 
 }

@@ -16,8 +16,7 @@ class AddAddressType extends AbstractType
             ->add('city')
             ->add('address')
             ->add('cp')
-            ->add('address_name')
-            ->add('Save' , SubmitType::class);
+            ->add('address_name');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

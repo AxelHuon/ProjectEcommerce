@@ -15,19 +15,20 @@
     </section>
 
 
-    <aside class="title-section content-site"><h2>Bestseller</h2></aside>
+    <aside class="title-section content-site"><h2>Some products</h2></aside>
     <section class="boucle-produit content-site">
         {% for product in products | slice(0,3) %}
-           <a class="box-produit" href="{{ path ('product_simple', {id:product.id}) }}">
+            <a class="box-produit" href="{{ path ('product_simple', {id:product.id}) }}">
                 <aside class="box-produit-content">
                     <div class="product-title-home"><h2>{{ product.name }}</h2></div>
                     <div class="product-img-home"><img src="{{ asset('assets/img/products/') }}{{ product.img }}"></div>
                     <div class="product-description-home"><p>{{ product.description|length > 50 ? product.description|slice(0, 100) ~ '...' : product.description}}</p></div>
                     <div class="product-price-home"><h4>{{ product.price }} €</h4></div>
-                    <a href="{{ path ('cart_add', {'id':product.id}) }}" class="btn-custom btn-black btn-add-to-cart">Add to cart</a>
-               </aside></a>
+                    <a href="{{ path('cart_add', {id:product.id}) }}" class="btn-custom btn-black btn-add-to-cart">Add to cart</a>
+                </aside></a>
         {% endfor%}
     </section>
+
 
 
 
