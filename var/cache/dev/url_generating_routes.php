@@ -24,6 +24,7 @@ return [
     'checkout_payement' => [[], ['_controller' => 'App\\Controller\\CheckoutController::payement'], [], [['text', '/checkout/payement']], [], [], []],
     'checkout_final' => [[], ['_controller' => 'App\\Controller\\CheckoutController::chekoutFinal'], [], [['text', '/checkout/final']], [], [], []],
     'remove_Allcart' => [[], ['_controller' => 'App\\Controller\\CheckoutController::removeAllCart'], [], [['text', '/checkout/removeAllCart']], [], [], []],
+    'checkout_addNewAddress' => [[], ['_controller' => 'App\\Controller\\CheckoutController::addAdress'], [], [['text', '/checkout/addAddress']], [], [], []],
     'contact' => [[], ['_controller' => 'App\\Controller\\ContactController::index'], [], [['text', '/contact']], [], [], []],
     'home' => [[], ['_controller' => 'App\\Controller\\HomeController::index'], [], [['text', '/']], [], [], []],
     'email' => [[], ['_controller' => 'App\\Controller\\HomeController::testEmail'], [], [['text', '/email']], [], [], []],
@@ -35,6 +36,7 @@ return [
     'app_login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], [], []],
     'app_logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], [], []],
     'shop' => [[], ['_controller' => 'App\\Controller\\ShopController::index'], [], [['text', '/shop']], [], [], []],
+    'shop_category' => [['categoryId'], ['_controller' => 'App\\Controller\\ShopController::filter'], [], [['variable', '', '[^/]++', 'categoryId', true], ['text', '/shop/category']], [], [], []],
     'user_page' => [[], ['_controller' => 'App\\Controller\\UserPageController::index'], [], [['text', '/my-account']], [], [], []],
     'user_addAddress' => [[], ['_controller' => 'App\\Controller\\UserPageController::addAdress'], [], [['text', '/my-account/addAddress']], [], [], []],
 ];

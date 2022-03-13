@@ -373,7 +373,6 @@ footer .payment{
 .boucle-produit{
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
     flex-wrap: wrap;
 }
 @media (max-width: 919px){
@@ -397,15 +396,27 @@ footer .payment{
     -webkit-box-shadow: 0px 0px 16px 4px rgba(0,0,0,0.05);
     box-shadow: 0px 0px 16px 4px rgba(0,0,0,0.05);
     margin-bottom: 3em;
+    margin-right:3em ;
 }
-
+.filter .btn-custom{
+    margin-right: 3em;
+}
 .box-produit-content .product-title-home h2{
     font-size: 20px;
     font-weight: 600;
 }
+.active-filter{
+    background: black !important;
+    color: white !important;
+}
+.product-img-home{
+    width: min-content !important;
+    margin: 0 auto;
+}
 
 .box-produit-content .product-img-home img{
     width: 300px;
+    margin: 0 auto;
 }
 
 .box-produit-content div{
@@ -997,7 +1008,7 @@ tfoot td{
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    height: 40vh;
+    min-height: 40vh;
 }
 
 .choice-address .select-button{

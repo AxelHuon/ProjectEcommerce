@@ -11,8 +11,30 @@
         </article>
     </section>
 
+    <section class="filter content-site">
+        {% for category in categories %}
+            <a class="btn-custom btn-black" id="category{{ category.id }}" href="{{ path('shop_category', {categoryId:category.id}) }}"> {{ category.name }}</a>
+        {% endfor %}
+        {% if filter == 1 %}
+            <a href="{{ path('shop') }}">Remove Filters</a>
+        {% else %}
+        {% endif %}
+    </section>
+
+    <script>
+        if(window.location.pathname == "/shop/category1"){
+            document.getElementById("category1").classList.add("active-filter")
+        }else if(window.location.pathname == "/shop/category2"){
+            document.getElementById("category2").classList.add("active-filter")
+        }else if(window.location.pathname == "/shop/category3"){
+            document.getElementById("category3").classList.add("active-filter")
+        }else if(window.location.pathname == "/shop/category4"){
+            document.getElementById("category4").classList.add("active-filter")
+        }
+    </script>
 
     <section class="boucle-produit content-site">
+        {{ message }}
         {% for product in products %}
             <a class="box-produit" href="{{ path ('product_simple', {id:product.id}) }}">
                 <aside class="box-produit-content">
@@ -20,7 +42,7 @@
                     <div class="product-img-home"><img src="{{ asset('assets/img/products/') }}{{ product.img }}"></div>
                     <div class="product-description-home"><p>{{ product.description|length > 50 ? product.description|slice(0, 100) ~ '...' : product.description}}</p></div>
                     <div class="product-price-home"><h4>{{ product.price }} €</h4></div>
-                    <form action><button class="btn-custom btn-black btn-add-to-cart">Add to cart</button></form>
+                    <a href="{{ path('cart_add', {id:product.id}) }}" class="btn-custom btn-black btn-add-to-cart">Add to cart</a>
                 </aside></a>
         {% endfor%}
     </section>

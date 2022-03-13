@@ -35,7 +35,7 @@
                     {% else %}
                     Stock : {{product.stock}}
                     </aside>
-                        <aside><form action="#"><button class="btn-custom btn-black btn-add-to-cart">Add to cart</button></form></aside>
+                        <aside><a href="{{ path('cart_add', {id:product.id}) }}" class="btn-custom btn-black btn-add-to-cart">Add to cart</a></aside>
                     <aside class="shipping-details">
                         <p class="ship">Free delivery</p>
                         <p class="come-back">Free returns</p>

@@ -120,7 +120,13 @@ class __TwigTemplate_45b998c5c30cc0ce4eadfa65d80a9e31 extends Template
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['address'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 17
-        echo "       </div>
+        echo "            <a class=\"address-item add-item\" href=\"";
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("checkout_addNewAddress");
+        echo "\"> <div>
+                    <i class=\"fa-solid fa-plus fa-2x\"></i>
+                </div></a>
+           </div>
+       </div>
    </section>
 
 ";
@@ -165,6 +171,10 @@ class __TwigTemplate_45b998c5c30cc0ce4eadfa65d80a9e31 extends Template
                <a class=\"select-button btn-custom btn-black\" href=\"{{ path('checkout_addAdress', {idAddress:address.id} ) }}\">Choose for delivery</a>
            </div>
        {% endfor %}
+            <a class=\"address-item add-item\" href=\"{{ path('checkout_addNewAddress') }}\"> <div>
+                    <i class=\"fa-solid fa-plus fa-2x\"></i>
+                </div></a>
+           </div>
        </div>
    </section>
 

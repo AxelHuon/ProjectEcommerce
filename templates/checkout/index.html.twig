@@ -14,6 +14,10 @@
                <a class="select-button btn-custom btn-black" href="{{ path('checkout_addAdress', {idAddress:address.id} ) }}">Choose for delivery</a>
            </div>
        {% endfor %}
+            <a class="address-item add-item" href="{{ path('checkout_addNewAddress') }}"> <div>
+                    <i class="fa-solid fa-plus fa-2x"></i>
+                </div></a>
+           </div>
        </div>
    </section>
 

@@ -153,7 +153,10 @@ class __TwigTemplate_f129a7baf1f89cad958dc27b7dfe4b96 extends Template
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["product"]) || array_key_exists("product", $context) ? $context["product"] : (function () { throw new RuntimeError('Variable "product" does not exist.', 36, $this->source); })()), "stock", [], "any", false, false, false, 36), "html", null, true);
             echo "
                     </aside>
-                        <aside><form action=\"#\"><button class=\"btn-custom btn-black btn-add-to-cart\">Add to cart</button></form></aside>
+                        <aside><a href=\"";
+            // line 38
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("cart_add", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["product"]) || array_key_exists("product", $context) ? $context["product"] : (function () { throw new RuntimeError('Variable "product" does not exist.', 38, $this->source); })()), "id", [], "any", false, false, false, 38)]), "html", null, true);
+            echo "\" class=\"btn-custom btn-black btn-add-to-cart\">Add to cart</a></aside>
                     <aside class=\"shipping-details\">
                         <p class=\"ship\">Free delivery</p>
                         <p class=\"come-back\">Free returns</p>
@@ -234,7 +237,7 @@ class __TwigTemplate_f129a7baf1f89cad958dc27b7dfe4b96 extends Template
 
     public function getDebugInfo()
     {
-        return array (  205 => 60,  195 => 56,  191 => 55,  186 => 54,  182 => 53,  176 => 51,  172 => 50,  164 => 44,  152 => 36,  140 => 28,  138 => 27,  135 => 26,  133 => 25,  127 => 22,  122 => 20,  118 => 19,  110 => 16,  100 => 12,  95 => 11,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  208 => 60,  198 => 56,  194 => 55,  189 => 54,  185 => 53,  179 => 51,  175 => 50,  167 => 44,  158 => 38,  152 => 36,  140 => 28,  138 => 27,  135 => 26,  133 => 25,  127 => 22,  122 => 20,  118 => 19,  110 => 16,  100 => 12,  95 => 11,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -276,7 +279,7 @@ class __TwigTemplate_f129a7baf1f89cad958dc27b7dfe4b96 extends Template
                     {% else %}
                     Stock : {{product.stock}}
                     </aside>
-                        <aside><form action=\"#\"><button class=\"btn-custom btn-black btn-add-to-cart\">Add to cart</button></form></aside>
+                        <aside><a href=\"{{ path('cart_add', {id:product.id}) }}\" class=\"btn-custom btn-black btn-add-to-cart\">Add to cart</a></aside>
                     <aside class=\"shipping-details\">
                         <p class=\"ship\">Free delivery</p>
                         <p class=\"come-back\">Free returns</p>

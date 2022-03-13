@@ -6,10 +6,12 @@ use App\Entity\Address;
 use App\Entity\Order;
 use App\Entity\OrderItem;
 use App\Entity\Product;
+use App\Form\AddAddressType;
 use App\Repository\AddressRepository;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
@@ -116,8 +118,11 @@ class CheckoutController extends AbstractController
                 $orderItem = new OrderItem();
                 $orderItem->setProduct($item['product']);
                 $orderItem->setOrderList($order);
+                $orderItem->getProduct($item['product'])->setStock($orderItem->getProduct($item['product'])->getStock()-1);
                 $entityManager->persist($orderItem);
                 $entityManager->flush();
+
+
             }
 
             return $this->redirectToRoute('remove_Allcart');
@@ -138,6 +143,33 @@ class CheckoutController extends AbstractController
     }
 
 
+
+    #[Route('/checkout/addAddress', name: 'checkout_addNewAddress')]
+    public function addAdress(Request $request, EntityManagerInterface $entityManager): Response{
+
+
+        if ($this->getUser()) {
+
+            $address = new Address();
+
+            $form = $this->createForm(AddAddressType::class, $address);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $address->setUser($this->getUser());
+                $entityManager->persist($address);
+                $entityManager->flush();
+                return $this->redirectToRoute('checkout');
+            }
+
+            return $this->renderForm('user_page/addAddress.html.twig', [
+                'user' => $this->getUser(),
+                'form' => $form,
+            ]);
+        }else{
+            return $this->redirectToRoute('app_login');
+        }
+
+    }
 
 
 }

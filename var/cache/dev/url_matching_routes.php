@@ -19,6 +19,7 @@ return [
         '/checkout/payement' => [[['_route' => 'checkout_payement', '_controller' => 'App\\Controller\\CheckoutController::payement'], null, null, null, false, false, null]],
         '/checkout/final' => [[['_route' => 'checkout_final', '_controller' => 'App\\Controller\\CheckoutController::chekoutFinal'], null, null, null, false, false, null]],
         '/checkout/removeAllCart' => [[['_route' => 'remove_Allcart', '_controller' => 'App\\Controller\\CheckoutController::removeAllCart'], null, null, null, false, false, null]],
+        '/checkout/addAddress' => [[['_route' => 'checkout_addNewAddress', '_controller' => 'App\\Controller\\CheckoutController::addAdress'], null, null, null, false, false, null]],
         '/contact' => [[['_route' => 'contact', '_controller' => 'App\\Controller\\ContactController::index'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'home', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null]],
         '/email' => [[['_route' => 'email', '_controller' => 'App\\Controller\\HomeController::testEmail'], null, null, null, false, false, null]],
@@ -57,6 +58,7 @@ return [
                 .')'
                 .'|/product/([^/]++)(*:276)'
                 .'|/reset\\-password/reset(?:/([^/]++))?(*:320)'
+                .'|/shop/category([^/]++)(*:350)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -71,8 +73,9 @@ return [
         215 => [[['_route' => 'cart_remove', '_controller' => 'App\\Controller\\CartController::remove'], ['id'], null, null, false, true, null]],
         250 => [[['_route' => 'checkout_addAdress', '_controller' => 'App\\Controller\\CheckoutController::chooseAddress'], ['idAddress'], null, null, false, true, null]],
         276 => [[['_route' => 'product_simple', '_controller' => 'App\\Controller\\ProductSimpleController::index'], ['id'], null, null, false, true, null]],
-        320 => [
-            [['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null],
+        320 => [[['_route' => 'app_reset_password', 'token' => null, '_controller' => 'App\\Controller\\ResetPasswordController::reset'], ['token'], null, null, false, true, null]],
+        350 => [
+            [['_route' => 'shop_category', '_controller' => 'App\\Controller\\ShopController::filter'], ['categoryId'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],
