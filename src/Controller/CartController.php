@@ -55,7 +55,7 @@ class CartController extends AbstractController
         }
         $session->set('cart', $cart);
 
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('cart');
 
     }
 
