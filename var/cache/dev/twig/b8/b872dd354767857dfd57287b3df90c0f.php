@@ -141,8 +141,11 @@ class __TwigTemplate_f129a7baf1f89cad958dc27b7dfe4b96 extends Template
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["product"]) || array_key_exists("product", $context) ? $context["product"] : (function () { throw new RuntimeError('Variable "product" does not exist.', 28, $this->source); })()), "stock", [], "any", false, false, false, 28), "html", null, true);
             echo "</span>
                     </aside>
-                    <aside><button class=\"btn-custom btn-black btn-add-to-cart\">Add to cart</aside>
-                    <aside class=\"shipping-details\">
+                    <aside><a href=\"";
+            // line 30
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("cart_add", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["product"]) || array_key_exists("product", $context) ? $context["product"] : (function () { throw new RuntimeError('Variable "product" does not exist.', 30, $this->source); })()), "id", [], "any", false, false, false, 30)]), "html", null, true);
+            echo "\" class=\"btn-custom btn-black btn-add-to-cart\">Add to cart</a></aside>
+                        <aside class=\"shipping-details\">
                         <p class=\"ship\">Free delivery</p>
                         <p class=\"come-back\">Free returns</p>
                     </aside>
@@ -197,7 +200,10 @@ class __TwigTemplate_f129a7baf1f89cad958dc27b7dfe4b96 extends Template
             // line 56
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["product"], "price", [], "any", false, false, false, 56), "html", null, true);
             echo " €</h4></div>
-                    <form action=\"#\"><button class=\"btn-custom btn-black btn-add-to-cart\">Add to cart</button></form>
+                    <a href=\"";
+            // line 57
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("cart_add", ["id" => twig_get_attribute($this->env, $this->source, $context["product"], "id", [], "any", false, false, false, 57)]), "html", null, true);
+            echo "\" class=\"btn-custom btn-black btn-add-to-cart\">Add to cart</a>
                 </aside></a>
         ";
         }
@@ -237,7 +243,7 @@ class __TwigTemplate_f129a7baf1f89cad958dc27b7dfe4b96 extends Template
 
     public function getDebugInfo()
     {
-        return array (  208 => 60,  198 => 56,  194 => 55,  189 => 54,  185 => 53,  179 => 51,  175 => 50,  167 => 44,  158 => 38,  152 => 36,  140 => 28,  138 => 27,  135 => 26,  133 => 25,  127 => 22,  122 => 20,  118 => 19,  110 => 16,  100 => 12,  95 => 11,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  214 => 60,  205 => 57,  201 => 56,  197 => 55,  192 => 54,  188 => 53,  182 => 51,  178 => 50,  170 => 44,  161 => 38,  155 => 36,  146 => 30,  140 => 28,  138 => 27,  135 => 26,  133 => 25,  127 => 22,  122 => 20,  118 => 19,  110 => 16,  100 => 12,  95 => 11,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -271,8 +277,8 @@ class __TwigTemplate_f129a7baf1f89cad958dc27b7dfe4b96 extends Template
                     {% elseif product.stock <= 5  %}
                         <span class=\"semi-important\">Stock : {{ product.stock }}</span>
                     </aside>
-                    <aside><button class=\"btn-custom btn-black btn-add-to-cart\">Add to cart</aside>
-                    <aside class=\"shipping-details\">
+                    <aside><a href=\"{{ path('cart_add', {id:product.id}) }}\" class=\"btn-custom btn-black btn-add-to-cart\">Add to cart</a></aside>
+                        <aside class=\"shipping-details\">
                         <p class=\"ship\">Free delivery</p>
                         <p class=\"come-back\">Free returns</p>
                     </aside>
@@ -298,7 +304,7 @@ class __TwigTemplate_f129a7baf1f89cad958dc27b7dfe4b96 extends Template
                     <div class=\"product-img-home\"><img src=\"{{ asset('assets/img/products/') }}{{ product.img }}\"></div>
                     <div class=\"product-description-home\"><p>{{ product.description|length > 50 ? product.description|slice(0, 100) ~ '...' : product.description}}</p></div>
                     <div class=\"product-price-home\"><h4>{{ product.price }} €</h4></div>
-                    <form action=\"#\"><button class=\"btn-custom btn-black btn-add-to-cart\">Add to cart</button></form>
+                    <a href=\"{{ path('cart_add', {id:product.id}) }}\" class=\"btn-custom btn-black btn-add-to-cart\">Add to cart</a>
                 </aside></a>
         {% endfor%}
     </section>

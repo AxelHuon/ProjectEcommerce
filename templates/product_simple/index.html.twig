@@ -27,8 +27,8 @@
                     {% elseif product.stock <= 5  %}
                         <span class="semi-important">Stock : {{ product.stock }}</span>
                     </aside>
-                    <aside><button class="btn-custom btn-black btn-add-to-cart">Add to cart</aside>
-                    <aside class="shipping-details">
+                    <aside><a href="{{ path('cart_add', {id:product.id}) }}" class="btn-custom btn-black btn-add-to-cart">Add to cart</a></aside>
+                        <aside class="shipping-details">
                         <p class="ship">Free delivery</p>
                         <p class="come-back">Free returns</p>
                     </aside>
@@ -54,7 +54,7 @@
                     <div class="product-img-home"><img src="{{ asset('assets/img/products/') }}{{ product.img }}"></div>
                     <div class="product-description-home"><p>{{ product.description|length > 50 ? product.description|slice(0, 100) ~ '...' : product.description}}</p></div>
                     <div class="product-price-home"><h4>{{ product.price }} €</h4></div>
-                    <form action="#"><button class="btn-custom btn-black btn-add-to-cart">Add to cart</button></form>
+                    <a href="{{ path('cart_add', {id:product.id}) }}" class="btn-custom btn-black btn-add-to-cart">Add to cart</a>
                 </aside></a>
         {% endfor%}
     </section>
